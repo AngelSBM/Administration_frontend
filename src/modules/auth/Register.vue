@@ -7,16 +7,16 @@
         <div class="title">Register</div>
         <form action="">
           <label for="email">Name</label>
-          <input type="text" name="name" id="">
+          <input type="text" name="name" v-model="credentials.name">
           <label for="email">Email</label>
-          <input type="text" name="email" id="">
+          <input type="text" name="email" v-model="credentials.email">
           <label for="password">Password</label>
-          <input type="password" name="passowrd" id="">
+          <input type="password" name="passowrd" v-model="credentials.password">
         </form>
   
         <a @click="$router.push({name: 'login'})">Already have an account? login here.</a>
   
-        <button type="submit">Register</button>
+        <button @click="register">Register</button>
       </div>
 
   </div>
@@ -24,7 +24,27 @@
 
 <script>
 export default {
+  data(){
+    return{
+      credentials: {
+        name: '',
+        email: '',
+        password: ''
+      }
+    }
+  },
+    methods:{
+    async register(){
+      try {
 
+        await this.$store.dispatch('auth/register', this.credentials);
+        this.$router.push({ name: 'login' })
+
+      } catch (error) {
+          console.log('ERROR', error);
+      }
+    }
+  }
 }
 </script>
 

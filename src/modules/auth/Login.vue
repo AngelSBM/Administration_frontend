@@ -2,17 +2,17 @@
   <div class="login-container">
 
       <div class="content">
-        <form action="">
+        <form>
           <div class="title">Login</div>
           <label for="email">Email</label>
-          <input type="text" name="email" id="">
+          <input type="text" name="email" v-model="credentials.email">
           <label for="password">Password</label>
-          <input type="password" name="passowrd" id="">
+          <input type="password" name="passowrd" v-model="credentials.password">
         </form>
-  
-        <a @click="$router.push({name: 'register'})">Don´t have an account? Register here.</a>
-  
-        <button type="submit">Login</button>
+    
+          <a @click="$router.push({name: 'register'})">Don´t have an account? Register here.</a>
+    
+          <button @click="login">Login</button>
       </div>
 
   </div>
@@ -20,6 +20,25 @@
 
 <script>
 export default {
+  data(){
+    return{
+      credentials: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods:{
+    async login(){
+      try {
+
+        await this.$store.dispatch('auth/login', this.credentials);
+
+      } catch (error) {
+          console.log('ERROR', error);
+      }
+    }
+  }
 
 }
 </script>
