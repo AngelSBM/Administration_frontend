@@ -28,6 +28,16 @@ const routes = [
         ]
     
       },
+      {
+        path:'/clients',
+        name: 'clients',
+        component: () => import(/* webpackChunkName: "clients" */ '../modules/client/ClientsView'),
+      },
+      {
+        path:'/client',
+        name: 'client',
+        component: () => import(/* webpackChunkName: "client" */ '../modules/client/Client'),
+      }
     ]
   },
   // {

@@ -33,6 +33,7 @@ export default {
       try {
 
         await this.$store.dispatch('auth/login', this.credentials);
+        this.$router.push({ name: 'clients' })
 
       } catch (error) {
           console.log('ERROR', error);
