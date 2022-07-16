@@ -1,0 +1,81 @@
+<template>
+  <div class="container">
+    <div class="phone-frame">
+        <div class="phone-notch">
+            <div class="notch-microphone"></div>
+            <div class="notch-circle"></div>
+            <div class="notch-circle"></div>
+        </div>
+        <div class="phone-content">
+            <router-view/>
+        </div>
+    </div>
+  </div>
+</template>
+
+<script>
+
+
+export default {
+
+
+}
+</script>
+
+<style scoped>
+    .container{
+        background-color: red;
+        height: 98vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .phone-frame{
+        width: 400px;
+        height: 90%;
+        background-color: aqua;
+        border: 13px solid black;
+        border-radius: 40px;
+        position: relative;
+    }
+
+    .phone-notch{
+        position: absolute;
+        top: 0%;
+        width: 60%;
+        left: 20%;
+        height: 30px;
+        background-color: black;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+
+    .notch-circle{
+        background-color: rgb(60, 60, 60);
+        width: 12px;
+        height: 12px;
+        margin: 0px 10px;
+        border-radius: 100%;
+        margin-bottom: 5px;
+    }
+
+    .notch-microphone{
+        width: 60px;
+        height: 12px;
+        background-color: rgb(36, 36, 36);
+        margin-right: 30px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+    }
+
+    .phone-content{
+        background-color: rgb(86, 86, 212);
+        height: 94%;
+        margin-top: 30px;
+    }
+
+</style>

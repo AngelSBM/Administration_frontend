@@ -1,15 +1,52 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import PhoneView from '@/views/PhoneView'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'phone',
+    component: PhoneView,
+    children: [
+      {
+        path: '/',
+        name: 'auth',
+        component: () => import(/* webpackChunkName: "auth" */ '../modules/auth/authView'),
+        children: [
+          {
+            path: '/',
+            name: 'login',
+            component: () => import(/* webpackChunkName: "login" */ '../modules/auth/Login'),
+          },
+          {
+            path: '/register',
+            name: 'register',
+            component: () => import(/* webpackChunkName: "register" */ '../modules/auth/Register'),
+          }
+        ]
+    
+      },
+    ]
   },
+  // {
+  //   path: '/auth',
+  //   name: 'auth',
+  //   component: () => import(/* webpackChunkName: "auth" */ '../modules/auth/authView'),
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: () => import(/* webpackChunkName: "login" */ '../modules/auth/Login'),
+  //     },
+  //     {
+  //       path: '/register',
+  //       name: 'register',
+  //       component: () => import(/* webpackChunkName: "register" */ '../modules/auth/Register'),
+  //     }
+  //   ]
+
+  // },
   {
     path: '/about',
     name: 'about',
