@@ -14,6 +14,12 @@
       </ul>
    </div>
 
+    <div class="add-container">
+      <button class="button" @click="$router.push({ name: 'newClient' })">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+    </div>
+
   </div>
 </template>
 
@@ -41,7 +47,7 @@ export default {
 
 <style scoped>
   .container{
-    height: 90%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 0, 195);
@@ -60,6 +66,7 @@ export default {
     border: none;
     border-bottom: 1px solid rgb(153, 153, 153);
     outline: none;
+    border-radius: 4px;
   }
 
   ul{
@@ -74,6 +81,27 @@ export default {
     border-bottom: 1px solid rgb(237, 237, 237);
     font-weight: bolder;
     cursor: pointer;
+  }
+
+  .add-container{
+    position: absolute;
+    bottom: 1%;
+    right: 2%;
+  }
+
+  button{
+
+        width: 70px;
+        height: 70px;
+        border: none;
+        outline: none;
+        border-radius: 100%;
+        cursor: pointer;
+        margin-bottom: 20px;
+        font-size: 28px;
+        background-color: black;
+        color: rgb(67, 67, 197);
+
   }
 
 </style>

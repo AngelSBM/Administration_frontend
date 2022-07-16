@@ -12,3 +12,15 @@ export const getClients = async () => {
     }
 
 }
+
+export const createClient = async (body) => {
+
+    try {
+        const response = await axiosInstance.post(`Client/new`, body)
+        return response.data;
+    } catch (error) {
+        console.log('ERROR FROM API', error);
+        throw new Error(error)
+    }
+
+}

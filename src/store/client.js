@@ -18,6 +18,10 @@ const actions = {
     },
     selectClient({commit}, client){
         commit('selectClient', client)
+    },
+    async createClient({ commit }, clientInfo){
+        const response = await api.createClient(clientInfo);
+        commit('addNewClient', response);
     }
 }
 
@@ -27,6 +31,9 @@ const mutations = {
     },
     selectClient(state, client){
         state.selectedClient = client;
+    },
+    addNewClient(state, createdClient){
+        state.clients.push(createdClient);
     }
 }
 
