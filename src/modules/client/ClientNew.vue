@@ -172,7 +172,6 @@ i{
     overflow: auto;
     display: flex;
     flex-direction: column;
-    background-color: rgb(255, 0, 195);
     position: relative;
   }
 
@@ -187,7 +186,7 @@ i{
   }
 
   .block{
-    background-color: beige;
+    background-color: rgb(217, 217, 217);
     margin-bottom: 40px;
     width: 90%;
     padding: 8px;
@@ -242,7 +241,6 @@ i{
 
 
     .block_actions{
-        background-color: green;
         display: flex;
         justify-content: space-around;
         align-items: center;

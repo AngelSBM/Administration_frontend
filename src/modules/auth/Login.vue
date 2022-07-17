@@ -62,14 +62,12 @@ export default {
   }
 
   .login-container{
-    background-color: brown;
     height: 100%;
     display: flex;
     align-items: center;
   }
 
   .content{
-    background-color: bisque;
     height: 90%;
     width: 100%;
     padding: 20px;

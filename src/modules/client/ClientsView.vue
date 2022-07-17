@@ -111,7 +111,6 @@ export default {
 
   .clients-container{
     height: 84%;
-    background-color: cadetblue;
     overflow: auto;
   }
 
@@ -132,7 +131,6 @@ export default {
     overflow: auto;
     display: flex;
     flex-direction: column;
-    background-color: rgb(255, 0, 195);
     position: relative;
   }
 
@@ -140,7 +138,6 @@ export default {
     width: 100%;
     top: 6%;
     height: 94%;
-    background-color: cornflowerblue;
     position: absolute;
   }
 
@@ -154,7 +151,6 @@ export default {
   }
 
   ul{
-    background-color: bisque;
     width: 90%;
     list-style: none;
   }

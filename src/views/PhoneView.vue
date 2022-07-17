@@ -24,8 +24,7 @@ export default {
 
 <style scoped>
     .container{
-        background-color: red;
-        height: 98vh;
+        height: 94vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -34,10 +33,10 @@ export default {
     .phone-frame{
         width: 400px;
         height: 90%;
-        background-color: aqua;
         border: 13px solid black;
         border-radius: 40px;
         position: relative;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     }
 
     .phone-notch{
@@ -73,7 +72,6 @@ export default {
     }
 
     .phone-content{
-        background-color: rgb(86, 86, 212);
         height: 94%;
         margin-top: 30px;
     }
