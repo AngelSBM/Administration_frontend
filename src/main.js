@@ -5,6 +5,15 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+import Notifications from 'vue-notification'
+ 
+/*
+or for SSR:
+import Notifications from 'vue-notification/dist/ssr.js'
+*/
+ 
+Vue.use(Notifications)
+
 new Vue({
   router,
   store,

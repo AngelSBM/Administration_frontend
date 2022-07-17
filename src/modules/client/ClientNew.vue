@@ -268,6 +268,26 @@ i{
         background-color: rgb(127, 153, 255);
     }
 
+    ::-webkit-scrollbar {
+    width: 4px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8);*/ 
+        -webkit-border-radius: 10px;
+        background-color:rgb(99, 99, 99);
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background:#666; 
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    }
+
 
   
 </style>

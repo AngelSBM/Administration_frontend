@@ -7,16 +7,35 @@
         <i class="fa fa-sign-out" aria-hidden="true" @click="logout"></i>
       </div>
       
-     <input type="text">
+     <input type="text" v-model="searchValue" placeholder="Search">
 
-      <ul v-if="clients.length > 0">
+      <div class="no-clients-container" v-if="clients.length === 0 || filteredClients.length === 0">
+        <div v-if="clients.length === 0">
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <span>
+            You don´t have any users by now
+          </span>
+        </div>
 
-          <li v-for="(client,index) in clients" :key="index" @click="goToUserDetails(client)">
-            <i class="fa fa-user" aria-hidden="true"></i> 
-              {{ client.name }}
-          </li>
+        <div v-if="filteredClients.length === 0">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+          <span style="width:90%; margin: auto">
+            You don´t have any user registered with this name!
+          </span>
+        </div>
+      </div>
 
-      </ul>
+<!-- v-if="clients.length > 0" -->
+      <div class="clients-container" v-if="clients.length > 0"> 
+        <ul>
+  
+            <li v-for="(client,index) in filteredClients" :key="index" @click="goToUserDetails(client)">
+              <i class="fa fa-user" aria-hidden="true"></i> 
+                {{ client.name }}
+            </li>
+  
+        </ul>
+      </div>
    </div>
 
     <div class="add-container">
@@ -31,19 +50,31 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
+  data(){
+    return {
+      searchValue: ''
+    }
+  },
   async created(){
-    await this.getClients();
+    // await this.getClients();
   },  
   computed:{
-    ...mapGetters('client', ['clients'])
+    ...mapGetters('client', ['clients']),
+    filteredClients(){
+      if(this.searchValue === ''){
+        return this.clients;
+      }
+
+      return this.clients.filter(client => client.name.toLowerCase().includes(this.searchValue.toLocaleLowerCase()))
+    }
   },
   methods: {
-    async getClients(){
-      await this.$store.dispatch('client/getClients')
-      console.log(this.clients);
-      // if(this.clients.length === 0){
-      // }
-    },
+    // async getClients(){
+    //   await this.$store.dispatch('client/getClients')
+    //   console.log(this.clients);
+    //   // if(this.clients.length === 0){
+    //   // }
+    // },
     goToUserDetails(client){
       this.$store.dispatch('client/selectClient', client);
       this.$router.push({name: 'client'})
@@ -59,6 +90,33 @@ export default {
 </script>
 
 <style scoped>
+
+  .no-clients-container{
+    margin-top: 40px;
+  }
+
+  .no-clients-container div{
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .no-clients-container i{
+    font-size: 80px;
+    margin-bottom: 20px;
+  }
+
+  .no-clients-container span{
+    opacity: .5;
+    font-size: 22px;
+  }
+
+  .clients-container{
+    height: 84%;
+    background-color: cadetblue;
+    overflow: auto;
+  }
+
   .logout_container{
     margin-bottom: 20px;
     text-align: right;
@@ -83,6 +141,8 @@ export default {
   .content{
     width: 100%;
     top: 6%;
+    height: 94%;
+    background-color: cornflowerblue;
     position: absolute;
   }
 
@@ -109,6 +169,11 @@ export default {
     cursor: pointer;
   }
 
+  li i{
+    font-size: 25px;
+    margin-right: 20px;
+  }
+
   .add-container{
     position: absolute;
     bottom: 1%;
@@ -117,16 +182,16 @@ export default {
 
   button{
 
-        width: 70px;
-        height: 70px;
-        border: none;
-        outline: none;
-        border-radius: 100%;
-        cursor: pointer;
-        margin-bottom: 20px;
-        font-size: 28px;
-        background-color: black;
-        color: rgb(67, 67, 197);
+    width: 70px;
+    height: 70px;
+    border: none;
+    outline: none;
+    border-radius: 100%;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 28px;
+    background-color: black;
+    color: rgb(67, 67, 197);
 
   }
 

@@ -41,6 +41,7 @@ export default {
       try {
         this.loadingLogin = true;
         await this.$store.dispatch('auth/login', this.credentials);
+        await this.$store.dispatch('client/getClients')
         this.loadingLogin = false;
         this.$router.push({ name: 'clients' })
 
