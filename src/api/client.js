@@ -24,3 +24,17 @@ export const createClient = async (body) => {
     }
 
 }
+
+
+
+export const deleteClient = async (id) => {
+
+    try {
+        const response = await axiosInstance.delete(`Client/Delete?id=${id}`)
+        return response.data;
+    } catch (error) {
+        console.log('ERROR FROM API', error);
+        throw new Error(error)
+    }
+
+}

@@ -60,7 +60,16 @@
         </div>
 
     <div class="buttons">
-        <button class="button edit" @click="addClient">Create</button>
+        <!-- <button class="button edit" @click="addClient">Create</button> -->
+        
+        <button @click="addClient" :class="{ 'loading-button': creatingLoading, 'button': true, 'edit': true }">
+            <span v-show="!creatingLoading">Create</span>
+            <span v-show="creatingLoading">
+              <i class="fa fa-spinner fa-spin" aria-hidden="true" style="margin-right: 10px;"></i>
+              Creating...
+              </span>
+          </button>
+
     </div>
 
 
@@ -79,7 +88,8 @@ export default {
             name: '',
             email: '',
             phone: ''
-        }
+        },
+        creatingLoading: false
     }
   },
   methods: {
@@ -108,8 +118,9 @@ export default {
         adrdressContainer.removeChild(adrdressContainer.lastChild)
     },
     async addClient(){
-
+        this.creatingLoading = true;
         if(this.clientInfo.email === '' || this.clientInfo.name === '' || this.clientInfo.phone === ''){
+            this.creatingLoading = false;
             return;
         }
 
@@ -131,13 +142,18 @@ export default {
         }
 
         await this.$store.dispatch('client/createClient', newClientInfo);
-        
+        this.creatingLoading = false;
+        this.$router.push({ name: 'clients' })
     }
   }
 }
 </script>
 
 <style scoped>
+
+  .loading-button{
+    opacity: .5;
+  }
 
 .back-container{
     margin-bottom: 20px;

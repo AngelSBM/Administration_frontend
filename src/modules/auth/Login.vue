@@ -12,7 +12,14 @@
     
           <a @click="$router.push({name: 'register'})">Don´t have an account? Register here.</a>
     
-          <button @click="login">Login</button>
+          <button @click="login" :class="{ 'loading-button': loadingLogin }">
+            <span v-show="!loadingLogin">Login</span>
+            <span v-show="loadingLogin">
+              <i class="fa fa-spinner fa-spin" aria-hidden="true" style="margin-right: 10px;"></i>
+              Hold on...
+              </span>
+          </button>
+
       </div>
 
   </div>
@@ -25,14 +32,16 @@ export default {
       credentials: {
         email: '',
         password: ''
-      }
+      },
+      loadingLogin: false
     }
   },
   methods:{
     async login(){
       try {
-
+        this.loadingLogin = true;
         await this.$store.dispatch('auth/login', this.credentials);
+        this.loadingLogin = false;
         this.$router.push({ name: 'clients' })
 
       } catch (error) {
@@ -103,12 +112,16 @@ export default {
     margin-top: 30px;
     padding: 8px 15px;
     width: 50%;
-    font-size: 23px;
+    font-size: 20px;
     border-radius: 3px;
     border: none;
     cursor: pointer;
     color: white;
     background-color: rgb(25, 69, 182);
+  }
+
+  .loading-button{
+    opacity: .5;
   }
 
 

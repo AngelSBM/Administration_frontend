@@ -6,7 +6,7 @@ export const login = async (body) => {
 
     try {
         console.log('BODYREQUESRT', body);     
-        const response = await axios.post(`${names.BASE_URL}Auth/Login`, body)
+        const response = await axios.post(`${names.BASE_URL}Auth/Login`, body, { withCredentials: true })
         return response.data;
     } catch (error) {
         console.log('ERROR FROM API', error);
@@ -28,3 +28,19 @@ export const register = async (body) => {
     }
 
 }
+
+export const refreshSession = async (token) => {
+
+    try {
+        const body = { 
+            refreshToken: token 
+        };
+        console.log('body para RF', body);
+        const response = await axios.get(`${names.BASE_URL}Auth/refreshToken?refreshToken=${token}`)
+        return response.data;
+    } catch (error) {
+        console.log('ERRORRRR', error);
+    }
+
+}
+

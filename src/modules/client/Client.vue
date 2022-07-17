@@ -49,7 +49,7 @@
 
     <div class="buttons">
         <button class="button edit">Edit</button>
-        <button class="button delete">Delete</button>
+        <button class="button delete" @click="deleteClient">Delete</button>
     </div>
 
 
@@ -66,6 +66,10 @@ export default {
     ...mapGetters('client', ['selectedClient'])
   },
   methods: {
+    async deleteClient(){
+        await this.$store.dispatch('client/deleteClient', this.selectedClient.id)
+        this.$router.push({ name: 'clients' })
+    }
   }
 }
 </script>

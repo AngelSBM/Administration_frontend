@@ -18,9 +18,14 @@ const actions = {
         }
 
         try {
-            const response = await api.login(bodyRequest);
-            console.log(response);
+            const response = await api.login(bodyRequest);            
             localStorage.setItem('access_token', JSON.stringify(response.accessToken))
+            localStorage.setItem('refresh_token', JSON.stringify(response.refreshToken))
+
+            setInterval(() => {
+                
+            }, (2500 * 10));
+
 
         } catch (error) {
             console.log('ERROR FROM STORE', error);
@@ -44,10 +49,13 @@ const actions = {
         }
 
     },
+    // logout({commit}){
+
+    // }
 }
 
 const mutations = {
-    
+
 }
 
 

@@ -1,7 +1,12 @@
 <template>
   <div class="container">
-
-   <div class="content">
+    
+    <div class="content">
+      
+      <div class="logout_container">
+        <i class="fa fa-sign-out" aria-hidden="true" @click="logout"></i>
+      </div>
+      
      <input type="text">
 
       <ul v-if="clients.length > 0">
@@ -36,18 +41,39 @@ export default {
     async getClients(){
       await this.$store.dispatch('client/getClients')
       console.log(this.clients);
+      // if(this.clients.length === 0){
+      // }
     },
     goToUserDetails(client){
       this.$store.dispatch('client/selectClient', client);
       this.$router.push({name: 'client'})
+    },
+    logout(){
+      localStorage.removeItem('access_token')
+      localStorage.removeItem('refresh_token')
+      this.$store.dispatch('client/purgeCompanieSession')
+      this.$router.push({ name:'login' })
     }
   }
 }
 </script>
 
 <style scoped>
+  .logout_container{
+    margin-bottom: 20px;
+    text-align: right;
+    width: 90%;
+  }
+
+  .fa-sign-out{
+    font-size: 40px;
+    cursor: pointer;
+  }
+
+
   .container{
     height: 100%;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 0, 195);
