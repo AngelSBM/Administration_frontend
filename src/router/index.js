@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import PhoneView from '@/views/PhoneView'
+import isAuthenticated from './isAuthenticated'
 
 Vue.use(VueRouter)
 
@@ -31,6 +32,7 @@ const routes = [
       {
         path:'/clients',
         name: 'clients',
+
         component: () => import(/* webpackChunkName: "clients" */ '../modules/client/ClientsView'),
       },
       {
@@ -50,35 +52,29 @@ const routes = [
       }
     ]
   },
-  // {
-  //   path: '/auth',
-  //   name: 'auth',
-  //   component: () => import(/* webpackChunkName: "auth" */ '../modules/auth/authView'),
-  //   children: [
-  //     {
-  //       path: '',
-  //       component: () => import(/* webpackChunkName: "login" */ '../modules/auth/Login'),
-  //     },
-  //     {
-  //       path: '/register',
-  //       name: 'register',
-  //       component: () => import(/* webpackChunkName: "register" */ '../modules/auth/Register'),
-  //     }
-  //   ]
-
-  // },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
 ]
+
 
 const router = new VueRouter({
   routes
 })
+
+
+router.beforeEach( async (to, from, next) => {
+
+
+  if(to.name !== 'login' && to.name !== 'register'){
+
+    const isAuth = isAuthenticated();
+    console.log(to.name);
+    console.log(isAuth);
+    if(!isAuth){
+      next({name: 'login'})
+    }else{ next() }
+  }
+
+  next();
+
+} )
 
 export default router

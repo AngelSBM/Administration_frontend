@@ -186,7 +186,7 @@ i{
   }
 
   .block{
-    background-color: rgb(217, 217, 217);
+    background-color: rgb(0, 0, 0);
     margin-bottom: 40px;
     width: 90%;
     padding: 8px;

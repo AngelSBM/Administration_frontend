@@ -36,6 +36,8 @@ export default {
         border: 13px solid black;
         border-radius: 40px;
         position: relative;
+        background-color: rgb(40, 40, 40);
+        color: white;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     }
 

@@ -254,7 +254,7 @@ i{
   }
 
   .block{
-    background-color: rgb(218, 218, 218);
+    background-color: rgb(0, 0, 0);
     margin-bottom: 40px;
     width: 90%;
     padding: 8px;

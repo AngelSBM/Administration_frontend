@@ -36,7 +36,7 @@
     </div>
 
 
-        <div class="block">
+        <div class="block" v-if="selectedClient.addresses.length > 0">
             <div class="block_field" v-for="(address, index) in selectedClient.addresses" :key="index">
                 <div class="field_title">
                     Address {{index + 1}}
@@ -106,7 +106,7 @@ i{
   }
 
   .block{
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(0, 0, 0);
     margin-bottom: 40px;
     width: 90%;
     padding: 8px;

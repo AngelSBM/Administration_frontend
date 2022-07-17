@@ -9,24 +9,24 @@
       
      <input type="text" v-model="searchValue" placeholder="Search">
 
-      <div class="no-clients-container" v-if="clients.length === 0 || filteredClients.length === 0">
+      <div class="no-clients-container" >
         <div v-if="clients.length === 0">
           <i class="fa fa-users" aria-hidden="true"></i>
           <span>
-            You don´t have any users by now
+            You don´t have any clients by now
           </span>
         </div>
 
-        <div v-if="filteredClients.length === 0">
+        <div v-if="filteredClients.length === 0 && clients.length !== 0">
           <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
           <span style="width:90%; margin: auto">
-            You don´t have any user registered with this name!
+            You don´t have any client registered with this name!
           </span>
         </div>
       </div>
 
 <!-- v-if="clients.length > 0" -->
-      <div class="clients-container" v-if="clients.length > 0"> 
+      <div class="clients-container" v-if="filteredClients.length > 0"> 
         <ul>
   
             <li v-for="(client,index) in filteredClients" :key="index" @click="goToUserDetails(client)">
@@ -148,17 +148,20 @@ export default {
     border-bottom: 1px solid rgb(153, 153, 153);
     outline: none;
     border-radius: 4px;
+    background-color: rgb(171, 171, 171);
   }
 
   ul{
     width: 90%;
     list-style: none;
+    position: absolute;
+    right: 20px;
   }
 
   li{    
     text-align: left;
     padding: 15px 10px;
-    border-bottom: 1px solid rgb(237, 237, 237);
+    border-bottom: 1px solid rgb(122, 122, 122);
     font-weight: bolder;
     cursor: pointer;
   }
@@ -171,7 +174,7 @@ export default {
   .add-container{
     position: absolute;
     bottom: 1%;
-    right: 2%;
+    right: 4%;
   }
 
   button{
@@ -184,9 +187,30 @@ export default {
     cursor: pointer;
     margin-bottom: 20px;
     font-size: 28px;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     color: rgb(67, 67, 197);
 
   }
+
+      ::-webkit-scrollbar {
+    width: 4px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8);*/ 
+        -webkit-border-radius: 10px;
+        background-color:rgb(99, 99, 99);
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background:#666; 
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    }
+
 
 </style>
