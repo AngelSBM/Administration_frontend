@@ -42,6 +42,11 @@ const routes = [
         path:'/new-client',
         name: 'newClient',
         component: () => import(/* webpackChunkName: "client" */ '../modules/client/ClientNew'),
+      },
+      {
+        path:'/update-client',
+        name: 'updateClient',
+        component: () => import(/* webpackChunkName: "client" */ '../modules/client/ClientEdit'),
       }
     ]
   },

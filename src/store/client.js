@@ -23,9 +23,16 @@ const actions = {
         const response = await api.createClient(clientInfo);
         commit('addNewClient', response);
     },
+    async updateClient({commit}, updatedClient){
+        const response = await api.updateClient(updatedClient);
+        commit('updateLocalClient', response)
+    },
     async deleteClient({commit}, idClient){
         await api.deleteClient(idClient);
         commit('removeClient', idClient);
+    },
+    async deleteAddress({commit}, id){
+        await api.deleteAddress(id);
     },
     purgeCompanieSession({commit}){
         commit('purgeSession')
@@ -41,6 +48,11 @@ const mutations = {
     },
     addNewClient(state, createdClient){
         state.clients.push(createdClient);
+    },
+    updateLocalClient(state, updatedClient){
+        const indexOfUpdatedClient = state.clients.findIndex(client => client.id == updatedClient.id);
+        
+        state.clients[indexOfUpdatedClient] = updatedClient;
     },
     removeClient(state, idClient){
         state.clients = state.clients.filter(client => client.id !== idClient);

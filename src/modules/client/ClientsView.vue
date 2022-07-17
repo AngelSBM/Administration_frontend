@@ -56,7 +56,7 @@ export default {
     }
   },
   async created(){
-    // await this.getClients();
+    await this.getClients();
   },  
   computed:{
     ...mapGetters('client', ['clients']),
@@ -69,12 +69,10 @@ export default {
     }
   },
   methods: {
-    // async getClients(){
-    //   await this.$store.dispatch('client/getClients')
-    //   console.log(this.clients);
-    //   // if(this.clients.length === 0){
-    //   // }
-    // },
+    async getClients(){
+      await this.$store.dispatch('client/getClients')
+
+    },
     goToUserDetails(client){
       this.$store.dispatch('client/selectClient', client);
       this.$router.push({name: 'client'})

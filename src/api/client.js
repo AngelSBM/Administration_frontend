@@ -16,7 +16,7 @@ export const getClients = async () => {
 export const createClient = async (body) => {
 
     try {
-        const response = await axiosInstance.post(`Client/new`, body)
+        const response = await axiosInstance.post(`Client/New`, body)
         return response.data;
     } catch (error) {
         console.log('ERROR FROM API', error);
@@ -26,11 +26,35 @@ export const createClient = async (body) => {
 }
 
 
+export const updateClient = async (body) => {
+
+    try {
+        const response = await axiosInstance.put(`Client/Update`, body)
+        return response.data;
+    } catch (error) {
+        console.log('ERROR FROM API', error);
+        throw new Error(error)
+    }
+
+}
+
 
 export const deleteClient = async (id) => {
 
     try {
         const response = await axiosInstance.delete(`Client/Delete?id=${id}`)
+        return response.data;
+    } catch (error) {
+        console.log('ERROR FROM API', error);
+        throw new Error(error)
+    }
+
+}
+
+
+export const deleteAddress = async (id) => {
+    try {
+        const response = await axiosInstance.delete(`Client/DeleteAddress?addressId=${id}`)
         return response.data;
     } catch (error) {
         console.log('ERROR FROM API', error);
