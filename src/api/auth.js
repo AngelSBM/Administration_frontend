@@ -4,13 +4,12 @@ import * as names from "@/api/names";
 
 export const login = async (body) => {
 
-    try {
-        console.log('BODYREQUESRT', body);     
+    try { 
         const response = await axios.post(`${names.BASE_URL}Auth/Login`, body, { withCredentials: true })
         return response.data;
     } catch (error) {
         console.log('ERROR FROM API', error);
-        throw new Error(error)
+        throw new Error(error.response.data.error)
     }
 
 }
@@ -19,11 +18,11 @@ export const login = async (body) => {
 export const register = async (body) => {
 
     try {
-        console.log('REQUESTTTTTTTTTTTTTTT', body);
         const response = await axios.post(`${names.BASE_URL}Auth/Register`, body)
         console.log(response);
         return response.data;
     } catch (error) {
+        throw new Error(error.response.data.error)
         console.log('ERRORRRR', error);
     }
 

@@ -37,10 +37,10 @@
             </div>        
     </div>
 
-    <div class="block addreses">
+    <div class="block addreses" v-if="selectedClient.addresses.length > 0">
 
         <div class="addresses_fields_existed">
-            <div class="block_field" v-for="(address, index) in clientInfo.addresses" :key="index">
+            <div class="block_field" v-for="(address, index) in selectedClient.addresses" :key="index">
                 <div class="field_title">
                     Address {{index + 1}}
                 </div>
@@ -150,6 +150,18 @@ export default {
     async updateClient(){
         
         const updatedClient = this.getUpdatedInfo();
+
+        const {name, email, phone} = updatedClient;
+
+        if(name === '' || email === '' || phone === ''){
+            
+            this.$notify({
+                group: 'foo',
+                title: 'Required',
+                text: 'Please fill the required fields'
+            })
+            return;
+        }
 
         await this.$store.dispatch('client/updateClient', updatedClient);
 

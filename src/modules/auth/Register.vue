@@ -41,6 +41,11 @@ export default {
         this.$router.push({ name: 'login' })
 
       } catch (error) {
+        this.$notify({
+            group: 'foo',
+            title: 'ERROR',
+            text: 'Something went wrong during registration'
+        })
           console.log('ERROR', error);
       }
     }

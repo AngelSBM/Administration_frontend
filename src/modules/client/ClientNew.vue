@@ -121,6 +121,12 @@ export default {
         this.creatingLoading = true;
         if(this.clientInfo.email === '' || this.clientInfo.name === '' || this.clientInfo.phone === ''){
             this.creatingLoading = false;
+
+            this.$notify({
+                group: 'foo',
+                title: 'Required',
+                text: 'Please fill the required fields'
+            })
             return;
         }
 

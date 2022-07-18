@@ -46,6 +46,13 @@ export default {
         this.$router.push({ name: 'clients' })
 
       } catch (error) {
+        
+            this.$notify({
+                group: 'foo',
+                title: 'ERROR',
+                text: 'Something went wrong during login'
+            })
+      this.loadingLogin = false;
           console.log('ERROR', error);
       }
     }

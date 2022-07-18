@@ -66,8 +66,6 @@ router.beforeEach( async (to, from, next) => {
   if(to.name !== 'login' && to.name !== 'register'){
 
     const isAuth = isAuthenticated();
-    console.log(to.name);
-    console.log(isAuth);
     if(!isAuth){
       next({name: 'login'})
     }else{ next() }
