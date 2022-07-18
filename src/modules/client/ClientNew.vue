@@ -238,7 +238,7 @@ i{
     }
 
     .edit{
-        background-color: rgb(75, 75, 192);
+        background-color: rgb(67, 72, 208);
     }
 
     .delete{
@@ -266,10 +266,10 @@ i{
     }
 
      .minus{
-        background-color: rgb(131, 72, 29);
+        background-color: rgb(111, 111, 111);
     }
     .plus{
-        background-color: rgb(127, 153, 255);
+        background-color: rgb(68, 101, 232);
     }
 
     ::-webkit-scrollbar {

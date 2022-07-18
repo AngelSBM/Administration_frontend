@@ -9,8 +9,11 @@
       
      <input type="text" v-model="searchValue" placeholder="Search">
 
-      <div class="no-clients-container" >
-        <div v-if="clients.length === 0">
+      <div class="line">
+      </div>
+
+      <div class="no-clients-container" v-if="clients.length === 0">
+        <div >
           <i class="fa fa-users" aria-hidden="true"></i>
           <span>
             You don´t have any clients by now
@@ -110,7 +113,7 @@ export default {
   }
 
   .clients-container{
-    height: 84%;
+    height: 80%;
     overflow: auto;
   }
 
@@ -148,7 +151,14 @@ export default {
     border-bottom: 1px solid rgb(153, 153, 153);
     outline: none;
     border-radius: 4px;
-    background-color: rgb(171, 171, 171);
+    background-color: rgb(171, 171, 171);    
+  }
+
+  .line{
+    border-bottom: 1px solid rgb(73, 73, 73);
+    margin: 10px auto;
+    margin-top: 20px;
+    width: 95%;
   }
 
   ul{
