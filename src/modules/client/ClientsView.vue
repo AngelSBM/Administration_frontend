@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import client from '@/store/client';
 import { mapGetters } from 'vuex';
 export default {
   data(){
@@ -64,11 +65,23 @@ export default {
   computed:{
     ...mapGetters('client', ['clients']),
     filteredClients(){
+
+      let sortedClients = this.clients.sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      });
+
+
       if(this.searchValue === ''){
-        return this.clients;
+        return sortedClients;
       }
 
-      return this.clients.filter(client => client.name.toLowerCase().includes(this.searchValue.toLocaleLowerCase()))
+    return sortedClients.filter(client => client.name.toLowerCase().includes(this.searchValue.toLocaleLowerCase()))
     }
   },
   methods: {
